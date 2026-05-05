@@ -3,9 +3,6 @@
  *
  * The backend (Python FastAPI) lives separately from Supabase. Auth is still
  * handled by Supabase; only verification calls flow through this adapter.
- *
- * If VITE_RASAD_API_URL is unset or the request fails, the caller can fall
- * back to the legacy `supabase.functions.invoke('verify-claim')` path.
  */
 
 export const RASAD_API_BASE: string =

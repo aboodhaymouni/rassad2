@@ -45,11 +45,10 @@ export default function Admin() {
     })();
   }, [isAdmin]);
 
-  const generate = async (type: string) => {
-    setGenerating(type);
-    const { error } = await supabase.functions.invoke("generate-content", { body: { type } });
-    setGenerating(null);
-    if (error) toast.error("فشل التوليد"); else toast.success("تم التوليد");
+  const generate = async (_type: string) => {
+    // Demo-content generation has been removed. Articles arrive via the
+    // FastAPI live monitor instead of an on-demand generator.
+    toast.error("الوظيفة معطّلة — استخدم البث المباشر بدلاً منها");
   };
 
   const scanKeywords = async () => {

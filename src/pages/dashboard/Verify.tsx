@@ -176,7 +176,7 @@ export default function Verify() {
     return pub.publicUrl;
   };
 
-  /** Run via FastAPI; fall back to Supabase verify-claim if backend unreachable. */
+  /** Run via FastAPI. Failures bubble up — no Supabase fallback any more. */
   const runFastApi = async (
     kind: "text" | "url" | "image",
   ): Promise<{ verdict: FinalVerdict; image_url?: string | null } | null> => {
@@ -212,29 +212,10 @@ export default function Verify() {
         toast.error(`فشل التحقق: ${e.detail ?? e.message}`);
       } else {
         console.error(e);
-        toast.error("الخادم الذكي غير متاح، سيتم استخدام الوضع الاحتياطي");
+        toast.error("الخادم الذكي غير متاح حالياً");
       }
       return null;
     }
-  };
-
-  const runSupabaseFallback = async (kind: "text" | "url" | "image") => {
-    let body: Record<string, unknown> = {};
-    if (kind === "text") {
-      body = { input: text.trim(), kind: "text" };
-    } else if (kind === "url") {
-      body = { input: url.trim(), kind: "url" };
-    } else {
-      const imageUrl = await uploadImage();
-      if (!imageUrl) return null;
-      body = { kind: "image", image_url: imageUrl, input: text.trim() };
-    }
-    const { data, error } = await supabase.functions.invoke("verify-claim", { body });
-    if (error || data?.error) {
-      toast.error(data?.error ?? "فشل التحقق");
-      return null;
-    }
-    return data?.verification as Verification;
   };
 
   const run = async () => {
@@ -309,11 +290,11 @@ export default function Verify() {
     }
 
     if (!success) {
-      const v = await runSupabaseFallback(tab);
+      const v: Verification | null = null;
       if (v) {
         setLatest(v);
         setHistory((p) => [v, ...p]);
-        toast.success("اكتمل التحقق (الوضع الاحتياطي)");
+        toast.success("اكتمل التحقق");
         success = true;
       }
     }

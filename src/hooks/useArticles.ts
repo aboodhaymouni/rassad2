@@ -38,16 +38,11 @@ export const useArticles = (type: Article["type"], limit = 24) => {
     return () => { alive = false; };
   }, [type, limit]);
 
+  // Demo-content generation was removed (it depended on a deprecated Supabase
+  // edge function). Real articles flow through the FastAPI live monitor.
   const generate = async () => {
-    setLoading(true);
-    const { error } = await supabase.functions.invoke("generate-content", { body: { type } });
-    if (error) setError(error.message);
-    const { data } = await supabase
-      .from("articles").select("*").eq("type", type)
-      .order("published_at", { ascending: false }).limit(limit);
-    setItems((data ?? []) as Article[]);
-    setLoading(false);
-    return !error;
+    setError("الوظيفة معطّلة في الإصدار الحالي");
+    return false;
   };
 
   return { items, loading, error, generate };
