@@ -1,0 +1,13 @@
+project_id = "qbznvouewrakmivumijm"
+
+[functions.verify-claim]
+verify_jwt = false
+
+[functions.verify-batch]
+verify_jwt = false
+
+[functions.generate-content]
+verify_jwt = false
+
+[functions.scan-keywords]
+verify_jwt = false

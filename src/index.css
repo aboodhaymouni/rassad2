@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* RASAD Premium Dark Design System */
+    --background: 220 20% 5%;          /* #0A0C0F INK */
+    --foreground: 40 25% 92%;
+    --surface: 215 30% 9%;             /* #0F1722 deep navy */
+    --surface-2: 215 25% 12%;
+    --paper: 42 27% 92%;               /* #F0EDE6 */
+
+    --card: 215 30% 9%;
+    --card-foreground: 40 25% 92%;
+    --popover: 215 30% 9%;
+    --popover-foreground: 40 25% 92%;
+
+    --primary: 5 65% 48%;              /* signal red #C8392D */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 5 80% 58%;
+
+    --secondary: 215 25% 14%;
+    --secondary-foreground: 40 25% 92%;
+
+    --muted: 215 20% 14%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 5 65% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --verified: 152 68% 32%;           /* #1A8A5A */
+    --verified-foreground: 0 0% 100%;
+    --warning: 36 80% 52%;             /* #E8A020 */
+    --warning-foreground: 0 0% 8%;
+    --info: 212 50% 63%;               /* #6B9BD4 */
+    --info-foreground: 0 0% 8%;
+
+    --destructive: 5 65% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 0.08;
+    --input: 215 25% 14%;
+    --ring: 5 65% 48%;
+
+    --radius: 0.75rem;
+
+    --gradient-hero: radial-gradient(ellipse at top right, hsl(5 65% 48% / 0.15), transparent 60%),
+                     radial-gradient(ellipse at bottom left, hsl(212 50% 30% / 0.18), transparent 55%);
+    --gradient-signal: linear-gradient(135deg, hsl(5 65% 48%), hsl(5 80% 58%));
+    --gradient-card: linear-gradient(180deg, hsl(215 30% 11% / 0.9), hsl(215 30% 7% / 0.95));
+    --shadow-glow: 0 0 40px hsl(5 65% 48% / 0.25);
+    --shadow-elev: 0 12px 40px -12px hsl(0 0% 0% / 0.6);
+
+    --sidebar-background: 215 30% 9%;
+    --sidebar-foreground: 40 25% 92%;
+    --sidebar-primary: 5 65% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 14%;
+    --sidebar-accent-foreground: 40 25% 92%;
+    --sidebar-border: 0 0% 100% / 0.06;
+    --sidebar-ring: 5 65% 48%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  html {
+    font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Anchor offsets so headers don't get hidden under the sticky navbar */
+  :target,
+  [id^="verify-"], [id^="section-"] {
+    scroll-margin-top: 96px;
+  }
+
+  /* Better focus rings */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary) / 0.6);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Custom scrollbar (subtle) */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 100% / 0.06);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(0 0% 100% / 0.12); background-clip: padding-box; }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(ellipse at 20% -10%, hsl(5 65% 35% / 0.08), transparent 50%),
+      radial-gradient(ellipse at 90% 10%, hsl(212 50% 25% / 0.08), transparent 50%),
+      linear-gradient(hsl(0 0% 100% / 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.015) 1px, transparent 1px);
+    background-size: auto, auto, 56px 56px, 56px 56px;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 800; letter-spacing: -0.005em; }
+
+  /* Latin display (numbers, codes, EN labels) — Bebas for impact */
+  .display, .font-display { font-family: 'Bebas Neue', 'Noto Kufi Arabic', sans-serif; letter-spacing: 0.02em; }
+
+  .font-mono, code, .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-white/[0.06] bg-[var(--gradient-card)] backdrop-blur-xl;
+    box-shadow: var(--shadow-elev);
+  }
+  .signal-glow { box-shadow: var(--shadow-glow); }
+  .hairline { @apply border border-white/[0.06]; }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-foreground/80;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(0 0% 100% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .radar-bg {
+    background:
+      radial-gradient(circle at center, transparent 0, transparent 30%, hsl(5 65% 48% / 0.06) 31%, transparent 32%),
+      radial-gradient(circle at center, transparent 0, transparent 50%, hsl(5 65% 48% / 0.05) 51%, transparent 52%),
+      radial-gradient(circle at center, transparent 0, transparent 70%, hsl(5 65% 48% / 0.04) 71%, transparent 72%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 hsl(5 65% 48% / 0.55); }
+  70% { box-shadow: 0 0 0 18px hsl(5 65% 48% / 0); }
+  100% { box-shadow: 0 0 0 0 hsl(5 65% 48% / 0); }
+}
+.pulse-ring { animation: pulse-ring 2.2s infinite; }
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.radar-sweep { animation: radar-sweep 6s linear infinite; transform-origin: center; }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 3s linear infinite; }
+
+@keyframes wire-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+.animate-wire-scroll {
+  animation: wire-scroll 60s linear infinite;
+}
+.animate-wire-scroll:hover { animation-play-state: paused; }
+
+/* Editorial rule — newspaper-style horizontal divider with end caps */
+.editorial-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+.editorial-rule::before,
+.editorial-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: hsl(0 0% 100% / 0.08);
+}
+
+/* Inverted "paper" surface for the contrast section */
+.paper-surface {
+  background: hsl(var(--paper));
+  color: hsl(220 20% 12%);
+}
+.paper-surface .muted {
+  color: hsl(220 10% 38%);
+}
+.paper-surface a { color: hsl(5 65% 38%); }
+
+/* Subtle hover lift used across cards */
+.hover-lift {
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 240ms ease,
+              box-shadow 240ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.3);
+  box-shadow: 0 12px 32px -8px hsl(var(--primary) / 0.18);
+}
+
+/* Shimmer effect for highlighted text on hero */
+@keyframes shimmer {
+  0% { background-position: -100% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--primary-glow)) 35%,
+    hsl(var(--primary)) 65%,
+    hsl(var(--primary-glow)) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4.5s linear infinite;
+}
+
+/* Soft floating motion */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-y { animation: float-y 4s ease-in-out infinite; }
+
+/* ─── Mount entrance animations (stagger via inline animation-delay) ─── */
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes enter-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes enter-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes enter-left {
+  /* In RTL the visual "left" column slides in from the left edge */
+  from { opacity: 0; transform: translateX(-32px) scale(0.985); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes enter-right {
+  from { opacity: 0; transform: translateX(32px) scale(0.985); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes enter-pop {
+  0%   { opacity: 0; transform: scale(0.9); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes hero-glow-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.enter-up    { animation: enter-up    720ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.enter-down  { animation: enter-down  600ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.enter-fade  { animation: enter-fade  900ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.enter-left  { animation: enter-left  900ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.enter-right { animation: enter-right 900ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.enter-pop   { animation: enter-pop   620ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* Animated underline that draws in once on mount */
+@keyframes underline-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.underline-draw {
+  position: relative;
+  display: inline-block;
+}
+.underline-draw::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -4px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  transform-origin: right;
+  animation: underline-draw 800ms cubic-bezier(0.22, 1, 0.36, 1) 900ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter-up, .enter-down, .enter-fade, .enter-left, .enter-right, .enter-pop,
+  .underline-draw::after, .float-y, .text-shimmer, .cta-glow, .pulse-ring,
+  .radar-sweep, .animate-spin-slow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Glow pulse for primary CTA */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4), 0 12px 28px -8px hsl(var(--primary) / 0.35); }
+  50% { box-shadow: 0 0 0 8px hsl(var(--primary) / 0), 0 16px 40px -10px hsl(var(--primary) / 0.55); }
+}
+.cta-glow { animation: cta-glow 2.6s ease-in-out infinite; }
+
+/* Card edge gradient on hover (overlays the border subtly) */
+.card-glow { position: relative; }
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    hsl(var(--primary) / 0.0) 50%,
+    hsl(var(--primary) / 0.5) 75%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 280ms ease;
+  pointer-events: none;
+}
+.card-glow:hover::before { opacity: 1; }

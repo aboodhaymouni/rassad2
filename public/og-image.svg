@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F1722"/>
+      <stop offset="1" stop-color="#0A0C0F"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="980" cy="120" r="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C8392D" stop-opacity="0.40"/>
+      <stop offset="1" stop-color="#C8392D" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="200" cy="540" r="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6B9BD4" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#6B9BD4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="logo-bg" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C8392D"/>
+      <stop offset="1" stop-color="#E5594A"/>
+    </linearGradient>
+    <pattern id="grid" x="0" y="0" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M 56 0 L 0 0 0 56" fill="none" stroke="#FFFFFF" stroke-opacity="0.025" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Brand block: logo + name + tagline (right-aligned for RTL) -->
+  <g transform="translate(1080, 90)">
+    <!-- Logo plate (positioned with negative offsets so the bottom-right corner anchors at translate origin) -->
+    <g transform="translate(-120, 0)">
+      <rect width="120" height="120" rx="28" fill="url(#logo-bg)"/>
+      <rect x="0.5" y="0.5" width="119" height="119" rx="27.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.18"/>
+      <g transform="translate(60, 60)" stroke="#FFFFFF" stroke-linecap="round" stroke-width="6" fill="none">
+        <circle cx="0" cy="0" r="8"/>
+        <path d="M0 -34 a34 34 0 0 1 34 34" stroke-opacity="0.95"/>
+        <path d="M0 -22 a22 22 0 0 1 22 22" stroke-opacity="0.7"/>
+        <path d="M0 0 L 30 -30" stroke-opacity="0.95"/>
+      </g>
+      <circle cx="60" cy="60" r="4" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <!-- Headline (RTL: text anchored to right) -->
+  <text x="1080" y="270" text-anchor="end" font-family="'Noto Kufi Arabic', system-ui, sans-serif" font-weight="800" font-size="84" fill="#FFFFFF" letter-spacing="-1">
+    تحقّق من أي خبر
+  </text>
+  <text x="1080" y="368" text-anchor="end" font-family="'Noto Kufi Arabic', system-ui, sans-serif" font-weight="800" font-size="84" letter-spacing="-1">
+    <tspan fill="#FFFFFF">في </tspan>
+    <tspan fill="#E5594A">ثوانٍ معدودة</tspan>
+  </text>
+  <text x="1080" y="442" text-anchor="end" font-family="'Noto Kufi Arabic', system-ui, sans-serif" font-weight="600" font-size="36" fill="#A0AEC0">
+    منصة عربية للتحقق من الأخبار · 6 وكلاء ذكاء اصطناعي
+  </text>
+
+  <!-- Bottom strip: brand + URL -->
+  <g transform="translate(1080, 540)">
+    <text x="0" y="0" text-anchor="end" font-family="'Bebas Neue', system-ui, sans-serif" font-size="44" letter-spacing="4" fill="#FFFFFF">
+      RASAD
+    </text>
+    <text x="0" y="32" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="20" fill="#6B9BD4">
+      rassad.io
+    </text>
+  </g>
+
+  <!-- Verdict chips on the left -->
+  <g transform="translate(120, 460)" font-family="'Noto Kufi Arabic', system-ui, sans-serif" font-weight="700" font-size="22">
+    <g>
+      <rect x="0" y="0" width="120" height="50" rx="25" fill="#1A8A5A" fill-opacity="0.15" stroke="#1A8A5A" stroke-opacity="0.4"/>
+      <text x="60" y="32" text-anchor="middle" fill="#1A8A5A">موثوق</text>
+    </g>
+    <g transform="translate(140, 0)">
+      <rect x="0" y="0" width="140" height="50" rx="25" fill="#E8A020" fill-opacity="0.15" stroke="#E8A020" stroke-opacity="0.4"/>
+      <text x="70" y="32" text-anchor="middle" fill="#E8A020">مضلِّل</text>
+    </g>
+    <g transform="translate(300, 0)">
+      <rect x="0" y="0" width="120" height="50" rx="25" fill="#C8392D" fill-opacity="0.18" stroke="#C8392D" stroke-opacity="0.5"/>
+      <text x="60" y="32" text-anchor="middle" fill="#E5594A">كاذب</text>
+    </g>
+  </g>
+</svg>

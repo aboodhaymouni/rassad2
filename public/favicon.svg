@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="rasad-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C8392D"/>
+      <stop offset="1" stop-color="#E5594A"/>
+    </linearGradient>
+    <radialGradient id="rasad-glow" cx="32" cy="32" r="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Rounded square plate -->
+  <rect x="2" y="2" width="60" height="60" rx="14" ry="14" fill="url(#rasad-bg)"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" ry="14" fill="url(#rasad-glow)"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" ry="13.5" fill="none" stroke="#fff" stroke-opacity="0.18" stroke-width="1"/>
+
+  <!-- Radar concentric arcs -->
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3">
+    <circle cx="32" cy="32" r="4"/>
+    <path d="M32 14 a18 18 0 0 1 18 18" stroke-opacity="0.95"/>
+    <path d="M32 20 a12 12 0 0 1 12 12" stroke-opacity="0.7"/>
+  </g>
+
+  <!-- Sweep line -->
+  <path d="M32 32 L48 16" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-opacity="0.95"/>
+
+  <!-- Center pulse dot -->
+  <circle cx="32" cy="32" r="2.4" fill="#fff"/>
+</svg>
